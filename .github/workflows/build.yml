@@ -64,7 +64,7 @@ jobs:
             run: ./scripts/install-dependencies.mjs test ${{ matrix.arch }}
           # Download Artifact
           - name: Download Artifact
-            uses: actions/download-artifact@v3
+            uses: actions/download-artifact@v4
             with:
                 name: ${{ matrix.arch }}
                 path: out
@@ -87,7 +87,7 @@ jobs:
             run: ./scripts/install-dependencies.mjs sdk amd64
           # SDK
           - name: Download SDK
-            uses: actions/download-artifact@v3
+            uses: actions/download-artifact@v4
             with:
                 name: AMD64
                 path: out
@@ -100,7 +100,7 @@ jobs:
           - name: Build Example Mods
             run: ./example-mods/build.sh
           - name: Upload Artifacts
-            uses: actions/upload-artifact@v3
+            uses: actions/upload-artifact@v4
             with:
                 name: Example Mods
                 path: ./example-mods/out/*
@@ -123,7 +123,7 @@ jobs:
                 go-version: '>=1.20.1'
           # Download Artifacts
           - name: Download Artifacts
-            uses: actions/download-artifact@v3
+            uses: actions/download-artifact@v4
             with:
                 path: out
           # Create Release
