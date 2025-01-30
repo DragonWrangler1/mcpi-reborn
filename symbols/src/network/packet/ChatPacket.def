@@ -1,0 +1,5 @@
+extends Packet;
+
+vtable 0x108a98;
+
+property std::string message = 0xc;

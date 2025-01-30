@@ -1,0 +1,69 @@
+extends LevelSource;
+
+vtable 0x10fcf0;
+
+method void saveLevelData() = 0xa2e94;
+method void setTile(int x, int y, int z, int id) = 0xa3904;
+method void setTileNoUpdate(int x, int y, int z, int id) = 0xa342c;
+method void setData(int x, int y, int z, int data) = 0xa394c;
+method void setDataNoUpdate(int x, int y, int z, int data) = 0xa3480;
+method void setTileAndData(int x, int y, int z, int id, int data) = 0xa38b4;
+method void setTileAndDataNoUpdate(int x, int y, int z, int id, int data) = 0xa33d0;
+// Calls setTileDirty and updateNearbyTiles
+method void tileUpdated(int x, int y, int z, int id) = 0xa387c;
+method void setTileDirty(int x, int y, int z) = 0xa3508;
+// Calls neighborChanged for all adjacent tiles
+method void updateNearbyTiles(int x, int y, int z, int id) = 0xa36cc;
+method void neighborChanged(int x, int y, int z, int id) = 0xa3658;
+// clip_liquids and clip_hitboxes default to true
+// If clip_hitboxes is true it will ignore blocks that have their getAABB return NULL
+method HitResult clip(const Vec3 &param_1, const Vec3 &param_2, bool clip_liquids, bool clip_hitboxes) = 0xa3db0;
+// Valid particles are crit, flame, lava, smoke, largesmoke, reddust, snowballpoof, and explode
+// There is also bubble which only works under water and ironcrack which will crash the game
+method void addParticle(const std::string &particle, float x, float y, float z, float deltaX, float deltaY, float deltaZ, int count) = 0xa449c;
+method Entity *getEntity(int id) = 0xa45a4;
+method bool addEntity(Entity *entity) = 0xa7cbc;
+method int getBrightness2(const LightLayer &layer, int x, int y, int z) = 0xa3c70;
+method int getRawBrightness(int x, int y, int z) = 0xa3b70;
+// See mods/src/sound/repository.cpp for a list of sounds
+method void playSound(Entity *entity, const std::string &name, float volume, float pitch) = 0xa42a8;
+// Searches aabb for entities, ignores the entity "ignore", overwrites the same vector each time
+method std::vector<Entity *> *getEntities(Entity *ignore, const AABB &aabb) = 0xa5a4c;
+// Searches aabb for entities of type type_id, adds then to buff, returns the number of entities added
+method int getEntitiesOfType(int type_id, const AABB &aabb, std::vector<Entity *> &buff) = 0xa612c;
+// Searches aabb for entities of base type base_type, adds then to buff, returns the number of entities added
+method int getEntitiesOfClass(int base_type, const AABB &aabb, std::vector<Entity *> &buff) = 0xa6240;
+// This will implicitly make the tile entity if the tile at x, y, z doesn't have one and is an EntityTile
+method TileEntity *getTileEntity(int x, int y, int z) = 0xa55d4;
+method void setTileEntity(int x, int y, int z, TileEntity *tileEntity) = 0xa7b58;
+method void removeTileEntity(int x, int y, int z) = 0xa7aac;
+method void animateTick(int x, int y, int z) = 0xa5920;
+method void addToTickNextTick(int x, int y, int z, int id, int delay) = 0xa7428;
+// Called by trapdoors, doors, and tnt
+method bool hasNeighborSignal(int x, int y, int z) = 0xa5f08;
+// Called by hasNeighborSignal
+method bool getSignal(int x, int y, int z, int direction) = 0xa5e6c;
+// Called by getSignal
+method bool hasDirectSignal(int x, int y, int z) = 0xa5d88;
+// Called by hasDirectSignal
+method bool getDirectSignal(int x, int y, int z, int direction) = 0xa5d2c;
+method bool canSeeSky(int x, int y, int z) = 0xa39b8;
+method bool isDay() = 0xa3d9c;
+method int getTopTile(int x, int z) = 0xa2cc8;
+method BiomeSource *getBiomeSource() = 0xa3c64;
+method void setInitialSpawn() = 0xa2bf4;
+method void validateSpawn() = 0xa2d2c;
+
+virtual-method void tick() = 0x28;
+virtual-method void updateSleepingPlayerList() = 0x2c;
+virtual-method ChunkCache *createChunkSource() = 0x30;
+
+property bool is_client_side = 0x11;
+property bool done_generating = 0x12;
+property std::vector<Entity *> entities = 0x20;
+property std::vector<TileEntity *> tileentities = 0x50;
+property std::vector<Player *> players = 0x60;
+property Dimension *dimension = 0x74;
+property bool no_update = 0x70;
+property ChunkSource *chunk_source = 0xa5c;
+property LevelData data = 0xa64;

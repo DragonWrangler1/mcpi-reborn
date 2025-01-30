@@ -1,0 +1,29 @@
+[submodule "dependencies/glfw/src"]
+	path = dependencies/glfw/src
+	url = https://github.com/glfw/glfw.git
+[submodule "dependencies/LIEF/src"]
+	path = dependencies/LIEF/src
+	url = https://github.com/lief-project/LIEF.git
+[submodule "dependencies/stb_image/include"]
+	path = dependencies/stb_image/include
+	url = https://github.com/nothings/stb.git
+[submodule "dependencies/utf8cpp/src"]
+	path = dependencies/utf8cpp/src
+	url = https://github.com/nemtrif/utfcpp.git
+[submodule "archives"]
+	path = archives
+	url = https://gitea.thebrokenrail.com/minecraft-pi-reborn/archives.git
+	shallow = true
+[submodule "dependencies/symbol-processor/src"]
+	path = dependencies/symbol-processor/src
+	url = https://gitea.thebrokenrail.com/minecraft-pi-reborn/symbol-processor.git
+[submodule "dependencies/runtime/src"]
+	path = dependencies/runtime/src
+	url = https://gitea.thebrokenrail.com/minecraft-pi-reborn/runtime.git
+[submodule "dependencies/imgui/src"]
+	path = dependencies/imgui/src
+	url = https://github.com/ocornut/imgui.git
+	ignore = dirty
+[submodule "dependencies/imgui/glad/src"]
+	path = dependencies/imgui/glad/src
+	url = https://github.com/Dav1dde/glad.git

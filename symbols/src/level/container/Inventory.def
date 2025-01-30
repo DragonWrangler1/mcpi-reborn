@@ -1,0 +1,14 @@
+extends FillingContainer;
+
+vtable 0x10de18;
+
+method void selectSlot(int slot) = 0x8d13c;
+// It's just FillingContainer_getLinked but with selectedSlot as slot
+method ItemInstance *getSelected() = 0x8d134;
+// It's just FillingContainer_linkSlot with selectedSlot as linked_slot
+method bool moveToSelectedSlot(int unlinked_slot, bool push_aside) = 0x8d148;
+method void setupDefault() = 0x8d164;
+method void clearInventoryWithDefault() = 0x8e7c8;
+method void clearInventory() = 0x92b84;
+
+property int selectedSlot = 0x28;

@@ -1,0 +1,7 @@
+vtable 0x115b40;
+
+extends TileEntity;
+
+constructor () = 0xcfa78;
+
+property FillingContainer container = 0x30;

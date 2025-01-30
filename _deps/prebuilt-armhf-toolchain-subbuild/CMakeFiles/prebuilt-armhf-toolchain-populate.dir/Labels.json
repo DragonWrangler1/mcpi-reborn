@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/joshua/minecraft-pi-reborn/_deps/prebuilt-armhf-toolchain-subbuild/CMakeFiles/prebuilt-armhf-toolchain-populate"
+		},
+		{
+			"file" : "/home/joshua/minecraft-pi-reborn/_deps/prebuilt-armhf-toolchain-subbuild/CMakeFiles/prebuilt-armhf-toolchain-populate.rule"
+		},
+		{
+			"file" : "/home/joshua/minecraft-pi-reborn/_deps/prebuilt-armhf-toolchain-subbuild/CMakeFiles/prebuilt-armhf-toolchain-populate-complete.rule"
+		},
+		{
+			"file" : "/home/joshua/minecraft-pi-reborn/_deps/prebuilt-armhf-toolchain-subbuild/prebuilt-armhf-toolchain-populate-prefix/src/prebuilt-armhf-toolchain-populate-stamp/prebuilt-armhf-toolchain-populate-build.rule"
+		},
+		{
+			"file" : "/home/joshua/minecraft-pi-reborn/_deps/prebuilt-armhf-toolchain-subbuild/prebuilt-armhf-toolchain-populate-prefix/src/prebuilt-armhf-toolchain-populate-stamp/prebuilt-armhf-toolchain-populate-configure.rule"
+		},
+		{
+			"file" : "/home/joshua/minecraft-pi-reborn/_deps/prebuilt-armhf-toolchain-subbuild/prebuilt-armhf-toolchain-populate-prefix/src/prebuilt-armhf-toolchain-populate-stamp/prebuilt-armhf-toolchain-populate-download.rule"
+		},
+		{
+			"file" : "/home/joshua/minecraft-pi-reborn/_deps/prebuilt-armhf-toolchain-subbuild/prebuilt-armhf-toolchain-populate-prefix/src/prebuilt-armhf-toolchain-populate-stamp/prebuilt-armhf-toolchain-populate-install.rule"
+		},
+		{
+			"file" : "/home/joshua/minecraft-pi-reborn/_deps/prebuilt-armhf-toolchain-subbuild/prebuilt-armhf-toolchain-populate-prefix/src/prebuilt-armhf-toolchain-populate-stamp/prebuilt-armhf-toolchain-populate-mkdir.rule"
+		},
+		{
+			"file" : "/home/joshua/minecraft-pi-reborn/_deps/prebuilt-armhf-toolchain-subbuild/prebuilt-armhf-toolchain-populate-prefix/src/prebuilt-armhf-toolchain-populate-stamp/prebuilt-armhf-toolchain-populate-patch.rule"
+		},
+		{
+			"file" : "/home/joshua/minecraft-pi-reborn/_deps/prebuilt-armhf-toolchain-subbuild/prebuilt-armhf-toolchain-populate-prefix/src/prebuilt-armhf-toolchain-populate-stamp/prebuilt-armhf-toolchain-populate-test.rule"
+		},
+		{
+			"file" : "/home/joshua/minecraft-pi-reborn/_deps/prebuilt-armhf-toolchain-subbuild/prebuilt-armhf-toolchain-populate-prefix/src/prebuilt-armhf-toolchain-populate-stamp/prebuilt-armhf-toolchain-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"prebuilt-armhf-toolchain-populate"
+		],
+		"name" : "prebuilt-armhf-toolchain-populate"
+	}
+}

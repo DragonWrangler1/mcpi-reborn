@@ -1,0 +1,136 @@
+name: 'CI'
+on:
+    push:
+        branches:
+          - master
+        tags:
+          - '*'
+          - '!flatpak'
+
+# Jobs
+jobs:
+    # Build Project
+    build:
+        strategy:
+            fail-fast: false
+            matrix:
+                arch:
+                  - AMD64
+                  - ARM64
+                  - ARMHF
+        name: Build
+        runs-on: ubuntu-latest
+        container: node:lts-bullseye
+        steps:
+          - name: Checkout Repository
+            uses: actions/checkout@v4
+            with:
+                submodules: true
+          # Dependencies
+          - name: Install Dependencies
+            run: ./scripts/install-dependencies.mjs build ${{ matrix.arch }}
+          # Build
+          - name: Build
+            run: ./scripts/build.mjs appimage ${{ matrix.arch }}
+          - name: Upload Artifacts
+            uses: actions/upload-artifact@v3
+            with:
+                name: ${{ matrix.arch }}
+                path: ./out/*.AppImage*
+                if-no-files-found: error
+    # Test Project
+    test:
+        needs: build
+        strategy:
+            fail-fast: false
+            matrix:
+                mode:
+                  - Client
+                  - Server
+                arch:
+                  - AMD64
+                  - ARM64
+                  - ARMHF
+        name: Test
+        runs-on: ${{ startsWith(matrix.arch, 'ARM') && 'raspberry-pi' || 'ubuntu-latest' }}
+        container: node:lts-bullseye
+        steps:
+          - name: Checkout Repository
+            uses: actions/checkout@v4
+            with:
+                submodules: false
+          # Dependencies
+          - name: Install Dependencies
+            run: ./scripts/install-dependencies.mjs test ${{ matrix.arch }}
+          # Download Artifact
+          - name: Download Artifact
+            uses: actions/download-artifact@v3
+            with:
+                name: ${{ matrix.arch }}
+                path: out
+          # Test
+          - name: Test
+            run: ./scripts/test.sh ${{ matrix.mode }} ${{ matrix.arch }}
+    # Example Mods
+    example-mods:
+        needs: build
+        name: Build Example Mods
+        runs-on: ubuntu-latest
+        container: node:lts-bullseye
+        steps:
+          - name: Checkout Repository
+            uses: actions/checkout@v4
+            with:
+                submodules: false
+          # Dependencies
+          - name: Install Dependencies
+            run: ./scripts/install-dependencies.mjs sdk amd64
+          # SDK
+          - name: Download SDK
+            uses: actions/download-artifact@v3
+            with:
+                name: AMD64
+                path: out
+          - name: Extract SDK
+            run: |
+                ./scripts/fix-appimage-for-docker.sh ./out/*.AppImage
+                chmod +x ./out/*.AppImage
+                ./out/*.AppImage --appimage-extract-and-run --copy-sdk
+          # Build Example Mods
+          - name: Build Example Mods
+            run: ./example-mods/build.sh
+          - name: Upload Artifacts
+            uses: actions/upload-artifact@v3
+            with:
+                name: Example Mods
+                path: ./example-mods/out/*
+                if-no-files-found: error
+    # Create Release
+    release:
+        if: startsWith(github.ref, 'refs/tags/')
+        needs:
+          - build
+          - test
+          - example-mods
+        name: Release
+        runs-on: ubuntu-latest
+        container: node:lts-bullseye
+        steps:
+          # Dependencies
+          - name: Install Go
+            uses: actions/setup-go@v5
+            with:
+                go-version: '>=1.20.1'
+          # Download Artifacts
+          - name: Download Artifacts
+            uses: actions/download-artifact@v3
+            with:
+                path: out
+          # Create Release
+          - name: Create Release
+            uses: https://gitea.com/actions/release-action@main
+            with:
+                files: ./out/*/*.AppImage*
+                api_key: ${{ secrets.RELEASE_TOKEN }}
+                title: v${{ github.ref_name }}
+                body: '[View Changelog](https://gitea.thebrokenrail.com/minecraft-pi-reborn/minecraft-pi-reborn/src/branch/master/docs/CHANGELOG.md)'

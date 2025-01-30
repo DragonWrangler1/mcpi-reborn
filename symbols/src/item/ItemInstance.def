@@ -1,0 +1,19 @@
+size 0xc;
+
+constructor item(const Item *item) = 0x9992c;
+constructor tile(const Tile *item) = 0x998e4;
+constructor tile_extra(const Tile *item, int count, int auxiliary) = 0x99918;
+constructor item_extra(const Item *item, int count, int auxiliary) = 0x99960;
+
+static-method ItemInstance *fromTag(CompoundTag *tag) = 0x9a124;
+
+method CompoundTag *save(CompoundTag *tag) = 0x9a31c;
+method int getMaxStackSize() = 0x99ac8;
+method bool isNull() = 0x999b0;
+method void setNull() = 0x999cc;
+
+property int count = 0x0;
+property int id = 0x4;
+property int auxiliary = 0x8;
+
+mark-as-simple;

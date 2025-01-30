@@ -1,0 +1,2 @@
+virtual-method void deleteLevel(const std::string &level_name) = 0x20;
+virtual-method void getLevelList(std::vector<LevelSummary> &level_list) = 0xc;

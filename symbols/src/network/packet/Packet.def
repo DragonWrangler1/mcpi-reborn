@@ -1,0 +1,9 @@
+constructor () = 0x6fc18;
+
+size 0x8;
+vtable 0x1024d8;
+vtable-size 0x14;
+
+virtual-method void write(RakNet_BitStream *bit_stream) = 0x8;
+virtual-method void read(RakNet_BitStream *bit_stream) = 0xc;
+virtual-method void handle(RakNet_RakNetGUID *guid, NetEventCallback *callback) = 0x10;

@@ -1,0 +1,26 @@
+size 0x110;
+
+method void initDefaultValue() = 0x18a54;
+method bool getBooleanValue(Options_Option *option) = 0x1cd74;
+method void addOptionToSaveOutput(std::vector<std::string> *data, std::string option, int value) = 0x195e4;
+method void save() = 0x1966c;
+method void update() = 0x19248;
+
+static-method bool readBool(const std::string &str, bool &out) = 0x19168;
+static-method bool readInt(const std::string &str, int &out) = 0x19014;
+
+property OptionsFile options_file = 0x10c;
+property bool fancy_graphics = 0x17;
+property bool split_controls = 0x105;
+property int game_difficulty = 0xe8;
+property bool anaglyph_3d = 0x15;
+property bool ambient_occlusion = 0x18;
+property bool hide_gui = 0xec;
+property uchar third_person = 0xed; // Technically This Is A Boolean
+property int render_distance = 0x10;
+property int sound = 0x4;
+property bool debug = 0xee;
+property bool server_visible = 0x104;
+property std::string username = 0x100;
+property bool invert_mouse = 0xc;
+property bool lefty = 0x1a;
